@@ -3,7 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title></title>
+    <link rel="stylesheet" href="src/styles/base.css" />
+    <link rel="stylesheet" href="src/styles/board.css" />
+    <link rel="stylesheet" href="src/styles/controls.css" />
   </head>
-  <body></body>
+  <body>
+    <div id="app">
+      <h1>tic tac toe</h1>
+      <p id="message"></p>
+      <div id="board"></div>
+      <div id="controls">
+        <button id="reset-button">リセット</button>
+      </div>
+      <div id="score">
+        <div class="score-item">
+          <span class="score-label">X</span>
+          <span id="score-x">0</span>
+        </div>
+        <div class="score-item">
+          <span class="score-label">O</span>
+          <span id="score-o">0</span>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="src/main.js"></script>
+  </body>
 </html>
