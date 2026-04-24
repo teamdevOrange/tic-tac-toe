@@ -1,5 +1,3 @@
-import { checkWinner, getNextPlayer } from '../core/gameLogic';
-
 // リセットボタン・勝者/ターン表示
 
 //勝者がいれば勝利メッセージを表示し、そうでなければ次のプレイヤーをHTMLに投げる関数
@@ -13,7 +11,7 @@ export function viewTurnorWin(turn, winner) {
 //スコアを画面に表示する関数
 export function viewScore(score) {
   const element = document.createElement('div');
-  element.textContent = 'Xのスコア: ${score.X} O: ${score.O}';
+  element.textContent = `Xのスコア: ${score.X} O: ${score.O}`;
   return element;
 }
 
