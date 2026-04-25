@@ -1,13 +1,10 @@
 // 盤面全体の描画
 import { oneSquare } from './Square.js';
 
-const dummydata = ['X', 'O', ' ', 'X', ' ', 'O', ' ', ' ', 'X'];
-
-export function viewBoard() {
-  const board = document.createElement('div');
+export function viewBoard(boardState, onCellClick) {
+  const fragment = document.createDocumentFragment();
   for (let i = 0; i < 9; i++) {
-    //今はダミーデータを読んでるだけです
-    board.appendChild(oneSquare(i, dummydata[i]));
+    fragment.appendChild(oneSquare(i, boardState[i], onCellClick));
   }
-  return board;
+  return fragment;
 }
