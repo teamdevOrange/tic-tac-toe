@@ -3,21 +3,28 @@
 //勝者がいれば勝利メッセージを表示し、そうでなければ次のプレイヤーをHTMLに投げる関数
 export function viewTurnorWin(turn, winner) {
   const element = document.createElement('div');
-  element.textContent =
-    winner !== null ? `${winner}の勝利！` : `${turn}のターン`;
+  if (winner === 'draw') {
+    // draw時の対応を追加
+    element.textContent = 'draw';
+  } else if (winner !== null) {
+    element.textContent = `${winner}の勝利！`;
+  } else {
+    element.textContent = `${turn} のターン`;
+  }
   return element;
 }
 
 //スコアを画面に表示する関数
 export function viewScore(score) {
   const element = document.createElement('div');
-  element.textContent = `Xのスコア: ${score.X} O: ${score.O}`;
+  element.textContent = `X: ${score.X} O: ${score.O}`;
   return element;
 }
 
 //リセットボタン
 export function viewResetButton(onReset) {
   const button = document.createElement('button');
+  button.id = 'reset-button'; //CSSを追加
   button.textContent = 'リセット';
   button.addEventListener('click', onReset);
   return button;
