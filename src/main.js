@@ -3,6 +3,11 @@
 import { checkWinner, getNextPlayer, isDraw } from './core/gameLogic.js';
 import { viewBoard } from './components/Board.js';
 import { loadScore, saveScore } from './core/storage.js';
+import {
+  viewTurnorWin,
+  viewScore,
+  viewResetButton,
+} from './components/Controls.js'; //VSCODEで勝手に改行になる　時間がないのと動くのでそのままにしますｗ
 
 let state = {
   board: Array(9).fill(null),
@@ -11,7 +16,6 @@ let state = {
 };
 
 function init() {
-  document.getElementById('reset-button').addEventListener('click', reset);
   render();
 }
 
@@ -40,19 +44,20 @@ function render() {
   boardElement.innerHTML = '';
   boardElement.appendChild(viewBoard(state.board, handleCellClick));
 
+  //メッセージ部分　※controlいかし
   const messageEl = document.getElementById('message');
-  if (state.winner === 'draw') {
-    messageEl.textContent = 'draw';
-  } else if (state.winner) {
-    messageEl.textContent = `${state.winner}の勝利！`;
-  } else {
-    messageEl.textContent = `${state.turn}のターン`;
-  }
+  messageEl.innerHTML = '';
+  messageEl.appendChild(viewTurnorWin(state.turn, state.winner));
 
-  // スコア
-  const score = loadScore();
-  document.getElementById('score-x').textContent = score.X;
-  document.getElementById('score-o').textContent = score.O;
+  // スコア　※controlいかし
+  const scoreEl = document.getElementById('score');
+  scoreEl.innerHTML = '';
+  scoreEl.appendChild(viewScore(loadScore()));
+
+  // リセット　※controlいかし
+  const controlsEl = document.getElementById('controls');
+  controlsEl.innerHTML = '';
+  controlsEl.appendChild(viewResetButton(reset));
 }
 
 function reset() {
